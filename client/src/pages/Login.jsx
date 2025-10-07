@@ -32,7 +32,7 @@ const Login = () => {
     console.log(input);
 
     try {
-      const response = await axios.post(`http://localhost:5001/api/v1/user/login`, input, {
+      const response = await axios.post(`https://blog-app-backend-xhtf.onrender.com/api/v1/user/login`, input, {
         headers: {
           "Content-Type": "application/json"
         },

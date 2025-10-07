@@ -42,7 +42,7 @@ const RecentBlog = () => {
     useEffect(() => {
         const getAllPublsihedBlogs = async () => {
             try {
-                const res = await axios.get(`http://localhost:5001/api/v1/blog/get-published-blogs`, { withCredentials: true })
+                const res = await axios.get(`https://blog-app-backend-xhtf.onrender.com/api/v1/blog/get-published-blogs`, { withCredentials: true })
                 console.log(res)
                 if (res.data.success) {
 

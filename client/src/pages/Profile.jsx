@@ -69,7 +69,7 @@ const Profile = () => {
 
         try {
             setLoading(true)
-            const res = await axios.put(`http://localhost:5001/api/v1/user/profile/update`, formData, {
+            const res = await axios.put(`https://blog-app-backend-xhtf.onrender.com/api/v1/user/profile/update`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 },

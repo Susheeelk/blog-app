@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { useSelector } from 'react-redux';
 
 const ResponsiveMenu = ({ openNav, setOpenNav, logoutHandler }) => {
-    const {user} = useSelector(store=>store.auth)
+    const { user } = useSelector(store => store.auth)
 
     return (
         <div className={`${openNav ? "left-0" : "-left-[100%]"} fixed bottom-0 top-0 z-20 flex h-screen w-[75%] flex-col justify-between bg-white dark:bg-gray-800 px-8 pb-6 pt-16 text-black dark:text-gray-100 md:hidden rounded-r-xl shadow-md transition-all`}>
@@ -16,10 +16,10 @@ const ResponsiveMenu = ({ openNav, setOpenNav, logoutHandler }) => {
                 <div className='flex items-center justify-start gap-3'>
                     {
                         user ? <Avatar className="w-14 h-14">
-                        <AvatarImage src={user.photoUrl} size={50} />
-                      </Avatar> : <FaUserCircle size={50} className='' />
+                            <AvatarImage src={user.photoUrl} size={50} />
+                        </Avatar> : <FaUserCircle size={50} className='' />
                     }
-                    
+
                     <div>
                         <h1 className=''>Hello, {user?.firstName || "User"}</h1>
                         <h1 className='text-sm text-slate-500'>Premium User</h1>
@@ -31,7 +31,7 @@ const ResponsiveMenu = ({ openNav, setOpenNav, logoutHandler }) => {
                         <Link to="/blogs" onClick={() => setOpenNav(false)}><li className='cursor-pointer'>Blog</li></Link>
                         <Link to="/about" onClick={() => setOpenNav(false)}><li className='cursor-pointer' >About</li></Link>
                         {
-                            user? <Button onClick={()=>{logoutHandler(), setOpenNav(false)}}>Logout</Button> : <Link to={'/signup'} onClick={() => setOpenNav(false)}><Button>Signup</Button></Link>
+                            user ? <Button onClick={() => { logoutHandler(), setOpenNav(false) }}>Logout</Button> : <Link to={'/signup'} onClick={() => setOpenNav(false)}><Button>Signup</Button></Link>
                         }
 
                     </ul>
@@ -39,7 +39,7 @@ const ResponsiveMenu = ({ openNav, setOpenNav, logoutHandler }) => {
             </div>
             <div className='pb-20'>
                 <h1>
-                    Made with ❤️ by Rohit
+                    Made with ❤️ by sushil kumar
                 </h1>
             </div>
         </div>
