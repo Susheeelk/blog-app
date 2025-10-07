@@ -15,7 +15,7 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: "http://localhost:5174",
+    origin: "https://blog-app-delta-taupe.vercel.app/",
     credentials: true
 }))
 // app.use(express.urlencoded({ extended: true }));
