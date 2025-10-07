@@ -123,7 +123,7 @@ export const logout = async (_, res) => {
 // update profile here
 export const updateProfile = async (req, res) => {
     try {
-        const userId = req._id
+        const userId = req.id
         const { firstName, lastName, occupation, bio, instagram, facebook, linkedin, github } = req.body;
         const file = req.file;
 
