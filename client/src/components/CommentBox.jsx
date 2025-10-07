@@ -120,8 +120,7 @@ const CommentBox = ({ selectedBlog }) => {
 
     const editCommentHandler = async (commentId) => {
         try {
-            const res = await axios.put(
-                `https://blog-app-backend-xhtf.onrender.com/api/v1/comment/${commentId}/edit`,
+            const res = await axios.put(`https://blog-app-backend-xhtf.onrender.com/api/v1/comment/${commentId}/edit`,
                 { content: editedContent },
                 {
                     withCredentials: true,
@@ -148,8 +147,7 @@ const CommentBox = ({ selectedBlog }) => {
 
     const likeCommentHandler = async (commentId) => {
         try {
-            const res = await axios.get(
-                `https://blog-app-backend-xhtf.onrender.com/api/v1/comment/${commentId}/like`,
+            const res = await axios.get(`https://blog-app-backend-xhtf.onrender.com/api/v1/comment/${commentId}/like`,
                 {
                     withCredentials: true,
                 }
@@ -166,8 +164,8 @@ const CommentBox = ({ selectedBlog }) => {
                 toast.success(res.data.message)
             }
         } catch (error) {
-            console.error("Error liking comment", error);
-            toast.error("Something went wrong");
+            console.error("Error liking comment", error.message);
+            toast.error(error.message);
         }
     };
 
