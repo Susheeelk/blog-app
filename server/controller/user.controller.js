@@ -120,43 +120,58 @@ export const logout = async (_, res) => {
     }
 }
 
-// update profile here
+
+
+// update profile controller
 export const updateProfile = async (req, res) => {
     try {
-        const userId = req.id
+        const userId = req.id; // ye auth middleware se aa raha hai
         const { firstName, lastName, occupation, bio, instagram, facebook, linkedin, github } = req.body;
         const file = req.file;
 
-        // get image user in dateuri here
-        const fileUri = getDataUri(file)
-        let cloudResponse = await cloudinary.uploader.upload(fileUri)
-
-        const user = await User.findById(userId).select('-password')
+        // user exist check
+        const user = await User.findById(userId).select("-password");
         if (!user) {
             return res.status(404).json({
+                success: false,
                 message: "User not found",
-                success: false
-            })
+            });
         }
-        if (firstName) user.firstName = firstName
-        if (lastName) user.lastName = lastName
-        if (occupation) user.occupation = occupation
-        if (instagram) user.instagram = instagram
-        if (facebook) user.facebook = facebook
-        if (linkedin) user.linkedin = linkedin
-        if (github) user.github = github
-        if (bio) user.bio = bio
-        if (file) user.photoUrl = cloudResponse.secure_url
 
-        await user.save()
+        // update text fields
+        if (firstName) user.firstName = firstName;
+        if (lastName) user.lastName = lastName;
+        if (occupation) user.occupation = occupation;
+        if (bio) user.bio = bio;
+        if (instagram) user.instagram = instagram;
+        if (facebook) user.facebook = facebook;
+        if (linkedin) user.linkedin = linkedin;
+        if (github) user.github = github;
+
+        // update image if file exists
+        if (file) {
+            const fileUri = getDataUri(file); // convert to Data URI
+            const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+            user.photoUrl = cloudResponse.secure_url;
+        }
+
+        // save updated user
+        await user.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "Profile updated successfully",
+            user,
+        });
     } catch (error) {
-        console.log(error.message);
+        console.error(error);
         return res.status(500).json({
             success: false,
-            message: error.message
-        })
+            message: error.message,
+        });
     }
-}
+};
+
 
 // get all user
 export const allUser = async (req, res) => {
