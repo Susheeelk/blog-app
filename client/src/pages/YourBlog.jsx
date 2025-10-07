@@ -78,7 +78,7 @@ const YourBlog = () => {
                 dispatch(setBlog(res.data.blogs))
             }
         } catch (error) {
-            console.log(error);
+            console.log(error.message);
 
         }
     }
